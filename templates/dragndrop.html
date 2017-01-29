@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+{% block inner_body %}
+
+<div id="draggable-wrapper">
+<div id="c" data-share="7.1" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-c-large.jpg') }}" />C</div>
+<div id="l" data-share="5.0" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-l-large.jpg') }}" />L</div>
+<div id="m" data-share="22.8" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-m-large.jpg') }}" />M</div>
+<div id="kd" data-share="3.1" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-kd-large.jpg') }}" />KD</div>
+<div id="s" data-share="29.2" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-s-large.jpg') }}" />S</div>
+<div id="v" data-share="7.7" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-v-large.jpg') }}" />V</div>
+<div id="mp" data-share="4.5" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-mp-large.jpg') }}" />MP</div>
+<div id="sd" data-share="17.5" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-sd-large.jpg') }}" />SD</div>
+</div>
+
+<div class="dropzone-wrapper">
+    <div id="block1" class="dropzone js-drop">Ett block</div>
+    <div id="block2" class="dropzone js-drop">Ett annat block</div>
+</div>
+
+{% endblock %}
