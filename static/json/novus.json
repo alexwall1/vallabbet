@@ -1,0 +1,29 @@
+{
+  "name": "Novus jan 2017",
+  "parties": {
+    "c": {
+      "share": 9.3
+    },
+    "l": {
+      "share": 5.4
+    },
+    "m": {
+      "share": 22.4
+    },
+    "kd": {
+      "share": 3.3
+    },
+    "s": {
+      "share": 26.9
+    },
+    "v": {
+      "share": 7.7
+    },
+    "mp": {
+      "share": 4.4
+    },
+    "sd": {
+      "share": 17.7
+    }
+  }
+}

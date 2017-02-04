@@ -12,6 +12,7 @@
 
     var calculate = function($dropzone) {
         var children = $dropzone.data('x');
+
         if (children != undefined) {
             if (sourceType == sourceTypes.SHARE) {
                 var share = 0.0;
@@ -21,7 +22,16 @@
                     }
                 }
                 $dropzone.html(share.toFixed(1).toString().replace('.', ',') + ' %');
+            } else if (sourceType == sourceTypes.SHARE_WITH_CI) {
+                var share = 0.0;
+                for (var key in children) {
+                    if (children.hasOwnProperty(key)) {
+                        share += parseFloat(children[key].getAttribute('data-share'));
+                    }
+                }
+                $dropzone.html(share.toFixed(1).toString().replace('.', ',') + ' %');
             } else if (sourceType == sourceTypes.INTEGER) {
+                console.log('calculate integer')
                 var members = 0;
                 for (var key in children) {
                     if (children.hasOwnProperty(key)) {
@@ -35,6 +45,8 @@
     };
 
     var loadPsu = function() {
+        console.log('load psu');
+        sourceType = 1;
         jQuery.getJSON('/static/json/scb_psu_2016.json', function(data) {
             $.each(data.parties, function(party, obj) {
                 var $draggable = $('.draggable#' + party);
@@ -47,13 +59,29 @@
     };
 
     var loadRiksdag = function() {
+        console.log('load rd');
+        sourceType = 2;
         jQuery.getJSON('/static/json/riksdagen.json', function(data) {
             $.each(data.parties, function(party, obj) {
                 var $draggable = $('.draggable#' + party);
                 $draggable.attr('data-members', parseInt(obj['members']));
                 var $bar = $draggable.children('.bar');
                 $bar.html(obj['members']);
-                $bar.css('height', 20 + Math.round(obj['members'] * 0.5));
+                $bar.css('height', 40 + Math.round(obj['members'] * 0.5));
+            });
+        });
+    };
+
+    var loadNovus = function() {
+        console.log('load novus');
+        sourceType = 0;
+        jQuery.getJSON('/static/json/novus.json', function(data) {
+            $.each(data.parties, function(party, obj) {
+                var $draggable = $('.draggable#' + party);
+                $draggable.attr('data-share', parseInt(obj['share']));
+                var $bar = $draggable.children('.bar');
+                $bar.html(parseFloat(obj['share']).toFixed(1).toString().replace('.',','));
+                $bar.css('height', 40 + Math.round(obj['share'] * 1.5));
             });
         });
     };
@@ -61,13 +89,11 @@
     $('input[name=source]:radio').change(function() {
         var val = $(this).val();
         if (val == 'psu') {
-            sourceType = 0;
             loadPsu();
-        } else if (val == 'riksdagen') {
-            sourceType = 2;
+        } else if (val == 'rd') {
             loadRiksdag();
         } else if (val == 'novus') {
-            alert('novus');
+            loadNovus();
         } else {
             alert('invalid');
         }
@@ -194,6 +220,6 @@
             ? 'msTransform': null;
     });
 
-    loadPsu();
+    loadRiksdag();
 
 }(window.interact));

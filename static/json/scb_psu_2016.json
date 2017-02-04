@@ -1,29 +1,37 @@
 {
-  "name": "SCB:s partisympatiundersökning 2016",
+  "name": "SCB PSU nov 2016",
   "parties": {
     "c": {
-      "share": 7.1
+      "share": 7.1,
+      "margin": 0.4
     },
     "l": {
-      "share": 5.0
+      "share": 5.0,
+      "margin": 0.5
     },
     "m": {
-      "share": 22.8
+      "share": 22.8,
+      "margin": 0.8
     },
     "kd": {
-      "share": 3.1
+      "share": 3.1,
+      "margin": 0.3
     },
     "s": {
-      "share": 29.2
+      "share": 29.2,
+      "margin": 0.8
     },
     "v": {
-      "share": 7.7
+      "share": 7.7,
+      "margin": 0.5
     },
     "mp": {
-      "share": 4.5
+      "share": 4.5,
+      "margin": 0.4
     },
     "sd": {
-      "share": 17.5
+      "share": 17.5,
+      "margin": 0.7
     }
   }
 }
