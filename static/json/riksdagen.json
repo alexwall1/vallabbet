@@ -1,0 +1,29 @@
+{
+  "name": "Riksdagen",
+  "parties": {
+    "c": {
+      "members": 22
+    },
+    "l": {
+      "members": 19
+    },
+    "m": {
+      "members": 84
+    },
+    "kd": {
+      "members": 16
+    },
+    "s": {
+      "members": 113
+    },
+    "v": {
+      "members": 21
+    },
+    "mp": {
+      "members": 25
+    },
+    "sd": {
+      "members": 48
+    }
+  }
+}

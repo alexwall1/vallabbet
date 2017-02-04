@@ -1,0 +1,29 @@
+{
+  "name": "SCB:s partisympatiundersökning 2016",
+  "parties": {
+    "c": {
+      "share": 7.1
+    },
+    "l": {
+      "share": 5.0
+    },
+    "m": {
+      "share": 22.8
+    },
+    "kd": {
+      "share": 3.1
+    },
+    "s": {
+      "share": 29.2
+    },
+    "v": {
+      "share": 7.7
+    },
+    "mp": {
+      "share": 4.5
+    },
+    "sd": {
+      "share": 17.5
+    }
+  }
+}

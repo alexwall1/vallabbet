@@ -1,15 +1,27 @@
 {% extends "home.html" %}
 {% block inner_body %}
 
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="source" value="psu" autocomplete="off" checked> SCB PSU 2016
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="source" value="riksdagen" autocomplete="off"> Riksdagen
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="source" value="novus" autocomplete="off"> Novus
+  </label>
+</div>
+
 <div id="draggable-wrapper">
-<div id="c" data-share="7.1" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-c-large.jpg') }}" />C</div>
-<div id="l" data-share="5.0" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-l-large.jpg') }}" />L</div>
-<div id="m" data-share="22.8" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-m-large.jpg') }}" />M</div>
-<div id="kd" data-share="3.1" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-kd-large.jpg') }}" />KD</div>
-<div id="s" data-share="29.2" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-s-large.jpg') }}" />S</div>
-<div id="v" data-share="7.7" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-v-large.jpg') }}" />V</div>
-<div id="mp" data-share="4.5" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-mp-large.jpg') }}" />MP</div>
-<div id="sd" data-share="17.5" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-sd-large.jpg') }}" />SD</div>
+<div id="c" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-c-large.jpg') }}" />C</div>
+<div id="l" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-l-large.jpg') }}" />L</div>
+<div id="m" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-m-large.jpg') }}" />M</div>
+<div id="kd" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-kd-large.jpg') }}" />KD</div>
+<div id="s" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-s-large.jpg') }}" />S</div>
+<div id="v" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-v-large.jpg') }}" />V</div>
+<div id="mp" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-mp-large.jpg') }}" />MP</div>
+<div id="sd" class="draggable js-drag"><div class="bar"></div><img src="{{ url_for('static', filename='images/logo-sd-large.jpg') }}" />SD</div>
 </div>
 
 <div class="dropzone-wrapper">

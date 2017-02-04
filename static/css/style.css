@@ -49,10 +49,11 @@ body {
 }
 
 .draggable {
+    font-size: 12px;
     position: relative;
     display: inline-block;
     z-index: 10;
-    width: 40px;
+    width: 30px;
     /* margin: .25em;
     padding: 1em 2em; */
     background-color: #fff;
@@ -67,7 +68,7 @@ body {
     display: block;
 }
 
-.draggable.-drop-possible { background-color: #42bd41; }
+.draggable.-drop-possible { background-color: #fff; }
 
 .bar {
     height: 20px;
@@ -76,4 +77,9 @@ body {
 #draggable-wrapper {
     padding-top: 30px;
     text-align: center;
+}
+
+.draggable img {
+    width: 30px;
+    height: 30px;
 }

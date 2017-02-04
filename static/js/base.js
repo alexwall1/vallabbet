@@ -2,10 +2,77 @@
 
     'use strict';
 
-    $('.bar').each(function(index) {
-        var share = $(this).parent().attr('data-share');
-        $(this).append(share);
-        $(this).css('height', 20 + Math.round(share * 1.5));
+    var sourceTypes = {
+        SHARE : 0,
+        SHARE_WITH_CI : 1,
+        INTEGER : 2
+    };
+
+    var sourceType = 0;
+
+    var calculate = function($dropzone) {
+        var children = $dropzone.data('x');
+        if (children != undefined) {
+            if (sourceType == sourceTypes.SHARE) {
+                var share = 0.0;
+                for (var key in children) {
+                    if (children.hasOwnProperty(key)) {
+                        share += parseFloat(children[key].getAttribute('data-share'));
+                    }
+                }
+                $dropzone.html(share.toFixed(1).toString().replace('.', ',') + ' %');
+            } else if (sourceType == sourceTypes.INTEGER) {
+                var members = 0;
+                for (var key in children) {
+                    if (children.hasOwnProperty(key)) {
+                        members += parseInt(children[key].getAttribute('data-members'));
+                    }
+                }
+                $dropzone.html(members.toString() + ' ledamöter');
+            } else {
+            }
+        }
+    };
+
+    var loadPsu = function() {
+        jQuery.getJSON('/static/json/scb_psu_2016.json', function(data) {
+            $.each(data.parties, function(party, obj) {
+                var $draggable = $('.draggable#' + party);
+                $draggable.attr('data-share', obj['share']);
+                var $bar = $draggable.children('.bar');
+                $bar.html(parseFloat(obj['share']).toFixed(1).toString().replace('.',','));
+                $bar.css('height', 40 + Math.round(obj['share'] * 1.5));
+            });
+        });
+    };
+
+    var loadRiksdag = function() {
+        jQuery.getJSON('/static/json/riksdagen.json', function(data) {
+            $.each(data.parties, function(party, obj) {
+                var $draggable = $('.draggable#' + party);
+                $draggable.attr('data-members', parseInt(obj['members']));
+                var $bar = $draggable.children('.bar');
+                $bar.html(obj['members']);
+                $bar.css('height', 20 + Math.round(obj['members'] * 0.5));
+            });
+        });
+    };
+
+    $('input[name=source]:radio').change(function() {
+        var val = $(this).val();
+        if (val == 'psu') {
+            sourceType = 0;
+            loadPsu();
+        } else if (val == 'riksdagen') {
+            sourceType = 2;
+            loadRiksdag();
+        } else if (val == 'novus') {
+            alert('novus');
+        } else {
+            alert('invalid');
+        }
+        calculate($('#block1'));
+        calculate($('#block2'));
     });
 
     var transformProp;
@@ -85,33 +152,18 @@
             .on('dragleave', function (event) {
                 var $dropzone = $(event.target);
                 var children = $dropzone.data('x') == undefined ? {} : $dropzone.data('x');
-                delete children[event.relatedTarget.textContent];
+                delete children[event.relatedTarget.getAttribute('id')];
                 $dropzone.data('x', children);
-
-                var share = 0.0;
-                for (var key in children) {
-                    if (children.hasOwnProperty(key)) {
-                        share += parseFloat(children[key].getAttribute('data-share'));
-                    }
-                }
-                event.target.textContent = share.toString().replace('.', ',') + ' %';
-
                 removeClass(event.target, '-drop-over');
+                calculate($dropzone);
             })
             .on('drop', function (event) {
                 removeClass(event.target, '-drop-over');
                 var $dropzone = $(event.target);
                 var children = $dropzone.data('x') == undefined ? {} : $dropzone.data('x');
-                children[event.relatedTarget.textContent] = event.relatedTarget;
+                children[event.relatedTarget.getAttribute('id')] = event.relatedTarget;
                 $dropzone.data('x', children);
-
-                var share = 0.0;
-                for (var key in children) {
-                    if (children.hasOwnProperty(key)) {
-                        share += parseFloat(children[key].getAttribute('data-share'));
-                    }
-                }
-                event.target.textContent = share.toString().replace('.', ',') + ' %';
+                calculate($dropzone);
             });
     }
 
@@ -141,5 +193,7 @@
             ? 'oTransform': 'msTransform' in document.body.style
             ? 'msTransform': null;
     });
+
+    loadPsu();
 
 }(window.interact));
