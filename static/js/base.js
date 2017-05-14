@@ -72,10 +72,24 @@
         });
     };
 
-    var loadNovus = function() {
+/*    var loadNovus = function() {
         console.log('load novus');
         sourceType = 0;
         jQuery.getJSON('/static/json/novus.json', function(data) {
+            $.each(data.parties, function(party, obj) {
+                var $draggable = $('.draggable#' + party);
+                $draggable.attr('data-share', parseInt(obj['share']));
+                var $bar = $draggable.children('.bar');
+                $bar.html(parseFloat(obj['share']).toFixed(1).toString().replace('.',','));
+                $bar.css('height', 40 + Math.round(obj['share'] * 1.5));
+            });
+        });
+    };
+    */
+    var loadTns = function() {
+        console.log('load tns');
+        sourceType = 0;
+        jQuery.getJSON('/static/json/tns-sifo.json', function(data) {
             $.each(data.parties, function(party, obj) {
                 var $draggable = $('.draggable#' + party);
                 $draggable.attr('data-share', parseInt(obj['share']));
@@ -92,10 +106,10 @@
             loadPsu();
         } else if (val == 'rd') {
             loadRiksdag();
-        } else if (val == 'novus') {
-            loadNovus();
+        } else if (val == 'tns') {
+            loadTns();
         } else {
-            alert('invalid');
+            console.log('invalid val: ' + val);
         }
         calculate($('#block1'));
         calculate($('#block2'));
