@@ -12,7 +12,6 @@
 
     var calculate = function($dropzone) {
         var children = $dropzone.data('x');
-
         if (children != undefined) {
             if (sourceType == sourceTypes.SHARE) {
                 var share = 0.0;
@@ -31,7 +30,6 @@
                 }
                 $dropzone.html(share.toFixed(1).toString().replace('.', ',') + ' %');
             } else if (sourceType == sourceTypes.INTEGER) {
-                console.log('calculate integer')
                 var members = 0;
                 for (var key in children) {
                     if (children.hasOwnProperty(key)) {
@@ -42,6 +40,11 @@
             } else {
             }
         }
+    };
+
+    var reload = function() {
+        calculate($('#block1'));
+        calculate($('#block2'));
     };
 
     var loadPsu = function() {
@@ -55,7 +58,7 @@
                 $bar.html(parseFloat(obj['share']).toFixed(1).toString().replace('.',','));
                 $bar.css('height', 40 + Math.round(obj['share'] * 1.5));
             });
-        });
+        }).done(reload);;
     };
 
     var loadRiksdag = function() {
@@ -64,12 +67,12 @@
         jQuery.getJSON('/static/json/riksdagen.json', function(data) {
             $.each(data.parties, function(party, obj) {
                 var $draggable = $('.draggable#' + party);
-                $draggable.attr('data-members', parseInt(obj['members']));
+                $draggable.attr('data-members', obj['members']);
                 var $bar = $draggable.children('.bar');
                 $bar.html(obj['members']);
                 $bar.css('height', 40 + Math.round(obj['members'] * 0.5));
             });
-        });
+        }).done(reload);
     };
 
 /*    var loadNovus = function() {
@@ -86,33 +89,31 @@
         });
     };
     */
-    var loadTns = function() {
+    var loadTns = function(callback) {
         console.log('load tns');
         sourceType = 0;
         jQuery.getJSON('/static/json/tns-sifo.json', function(data) {
             $.each(data.parties, function(party, obj) {
                 var $draggable = $('.draggable#' + party);
-                $draggable.attr('data-share', parseInt(obj['share']));
+                $draggable.attr('data-share', obj['share']);
                 var $bar = $draggable.children('.bar');
                 $bar.html(parseFloat(obj['share']).toFixed(1).toString().replace('.',','));
                 $bar.css('height', 40 + Math.round(obj['share'] * 1.5));
             });
-        });
+        }).done(reload);
     };
 
     $('input[name=source]:radio').change(function() {
         var val = $(this).val();
         if (val == 'psu') {
-            loadPsu();
+            loadPsu(calculate);
         } else if (val == 'rd') {
-            loadRiksdag();
+            loadRiksdag(calculate);
         } else if (val == 'tns') {
-            loadTns();
+            loadTns(calculate);
         } else {
             console.log('invalid val: ' + val);
         }
-        calculate($('#block1'));
-        calculate($('#block2'));
     });
 
     var transformProp;
