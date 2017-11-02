@@ -1,29 +1,29 @@
 {
-  "name": "TNS apr 2017",
+  "name": "TNS okt 2017",
   "parties": {
     "c": {
-      "share": 13.8
+      "share": 12.3
     },
     "l": {
-      "share": 5.4
+      "share": 6.1
     },
     "m": {
-      "share": 17.5
+      "share": 18.6
     },
     "kd": {
       "share": 2.9
     },
     "s": {
-      "share": 29.9
+      "share": 30.5
     },
     "v": {
-      "share": 8.2
+      "share": 8.3
     },
     "mp": {
-      "share": 3.2
+      "share": 3.8
     },
     "sd": {
-      "share": 16.7
+      "share": 15
     }
   }
 }

@@ -50,7 +50,7 @@
     var loadPsu = function() {
         console.log('load psu');
         sourceType = 1;
-        jQuery.getJSON('/static/json/scb_psu_2016.json', function(data) {
+        jQuery.getJSON('/static/json/scb_psu_2017.json', function(data) {
             $.each(data.parties, function(party, obj) {
                 var $draggable = $('.draggable#' + party);
                 $draggable.attr('data-share', obj['share']);
