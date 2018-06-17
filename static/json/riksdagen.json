@@ -1,5 +1,5 @@
 {
-  "name": "Val sep 2014",
+  "name": "Riksdagen",
   "parties": {
     "c": {
       "members": 22
@@ -8,7 +8,7 @@
       "members": 19
     },
     "m": {
-      "members": 84
+      "members": 83
     },
     "kd": {
       "members": 16
@@ -23,7 +23,7 @@
       "members": 25
     },
     "sd": {
-      "members": 48
+      "members": 42
     }
   }
 }

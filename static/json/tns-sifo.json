@@ -1,29 +1,29 @@
 {
-  "name": "TNS jan 2018",
+  "name": "TNS jun 2018",
   "parties": {
     "c": {
-      "share": 8.8
+      "share": 10.8
     },
     "l": {
-      "share": 5.1
+      "share": 4.9
     },
     "m": {
-      "share": 24.4
+      "share": 20.6
     },
     "kd": {
-      "share": 2.9 
+      "share": 2.4 
     },
     "s": {
-      "share": 27.8
+      "share": 26.1
     },
     "v": {
-      "share": 7.7
+      "share": 9.8
     },
     "mp": {
-      "share": 4.1
+      "share": 4.0
     },
     "sd": {
-      "share": 16.2 
+      "share": 18.5 
     }
   }
 }
